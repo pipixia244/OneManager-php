@@ -5,6 +5,7 @@
   此为pipixia244魔改版，目前和原版不同的有：
   1. 游客上传文件的文件名从md5改为原文件名。如果文件夹重名，将上传失败，不对目标目录的原文件做任何更改。TODO：默认改名加随机字符串后上传。
   2. 添加了生成当前目录/文件短链接的按钮。
+  3. 统一了后台设置界面，错误界面和刷新缓存界面的风格。如下图![image](https://user-images.githubusercontent.com/56287117/152143840-3d47d087-a760-44b2-9fd3-2ea99fb5bebb.png)![image](https://user-images.githubusercontent.com/56287117/152143884-db0535cd-0657-4cc2-b2da-2db15ef7f800.png)
 
   Releases只是当存档在用的，并不是最新代码。  
 
