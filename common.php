@@ -485,7 +485,7 @@ function main($path)
             $files['error']['code'] = 'unknownError';
             $files['error']['stat'] = 500;
         }
-        return message('<div style="margin:2px;"><pre>' . $files['error']['message'] . '</pre></div><div style="padding:6px" id="top-div"></div><a href="javascript:history.back(-1)">'.getconstStr('Back').'</a>', $files['error']['code'], $files['error']['stat']);
+        return message('<div style="margin:2px;"><pre>' . $files['error']['message'] . '</pre></div><div style=\"padding:6px\" id=\"top-div\"></div><a href="javascript:history.back(-1)">'.getconstStr('Back').'</a>', $files['error']['code'], $files['error']['stat']);
     }
 }
 
@@ -1440,7 +1440,7 @@ function EnvOpt($needUpdate = 0)
             return message($html, $title, 400);
         } else {
             //WaitSCFStat();
-            $html .= getconstStr('UpdateSuccess') . '<br><a href="">' . getconstStr('Back') . '</a><script>var status = "' . $response['DplStatus'] . '";</script>';
+            $html .= getconstStr('UpdateSuccess') . '<br><div style=\"padding:6px\" id=\"top-div\"></div><a href="">' . getconstStr('Back') . '</a><script>var status = "' . $response['DplStatus'] . '";</script>';
             $title = getconstStr('Setup');
             return message($html, $title, 202, 1);
         }
@@ -1456,11 +1456,11 @@ function EnvOpt($needUpdate = 0)
                 $f = substr($v, 0, 1);
                 if (strlen($v)==1) $v .= '_';
                 if (isCommonEnv($v)) {
-                    return message('Do not input ' . $envs . '<br><a href="">' . getconstStr('Back') . '</a>', 'Error', 400);
+                    return message('Do not input ' . $envs . '<br><div style=\"padding:6px\" id=\"top-div\"></div><a href="">' . getconstStr('Back') . '</a>', 'Error', 400);
                 } elseif (!(('a'<=$f && $f<='z') || ('A'<=$f && $f<='Z'))) {
-                    return message('<a href="">' . getconstStr('Back') . '</a>', 'Please start with letters', 400);
+                    return message('<div style=\"padding:6px\" id=\"top-div\"></div><a href="">' . getconstStr('Back') . '</a>', 'Please start with letters', 400);
                 } elseif (getConfig($v)) {
-                    return message('<a href="">' . getconstStr('Back') . '</a>', 'Same tag', 400);
+                    return message('<div style=\"padding:6px\" id=\"top-div\"></div><a href="">' . getconstStr('Back') . '</a>', 'Same tag', 400);
                 } else {
                     $tmp[$k] = $v;
                 }
@@ -1487,7 +1487,7 @@ function EnvOpt($needUpdate = 0)
             $title = 'Error';
             return message($html, $title, 409);
         } else {
-            $html .= getconstStr('Success') . '!<br>
+            $html .= getconstStr('Success') . '!<br><div style=\"padding:6px\" id=\"top-div\"></div>
             <a href="">' . getconstStr('Back') . '</a>
             <script>
                 var status = "' . $response['DplStatus'] . '";
@@ -1555,25 +1555,25 @@ function EnvOpt($needUpdate = 0)
         }
     } else return message('please login again', 'Need login', 403);
     if (isset($_POST['changePass'])) if (compareadminmd5('admin', getConfig('admin'), $_COOKIE['admin'], $_POST['_admin'])) {
-        if (!is_numeric($_POST['timestamp'])) return message("Error time<a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
-        if (abs(time() - $_POST['timestamp']/1000) > 5*60) return message("Timeout<a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
-        if ($_POST['newPass1']==''||$_POST['newPass2']=='') return message("Empty new pass<a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
-        if ($_POST['newPass1']!==$_POST['newPass2']) return message("Twice new pass not the same<a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
-        if ($_POST['newPass1']==getConfig('admin')) return message("New pass same to old one<a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
+        if (!is_numeric($_POST['timestamp'])) return message("Error time<div style=\"padding:6px\" id=\"top-div\"></div><a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
+        if (abs(time() - $_POST['timestamp']/1000) > 5*60) return message("Timeout<div style=\"padding:6px\" id=\"top-div\"></div><a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
+        if ($_POST['newPass1']==''||$_POST['newPass2']=='') return message("Empty new pass<div style=\"padding:6px\" id=\"top-div\"></div><a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
+        if ($_POST['newPass1']!==$_POST['newPass2']) return message("Twice new pass not the same<div style=\"padding:6px\" id=\"top-div\"></div><a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
+        if ($_POST['newPass1']==getConfig('admin')) return message("New pass same to old one<div style=\"padding:6px\" id=\"top-div\"></div><a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
         if ($_POST['oldPass']==sha1(getConfig('admin') . $_POST['timestamp'])) {
             $tmp['admin'] = $_POST['newPass1'];
             $response = setConfigResponse( setConfig($tmp) );
             if (api_error($response)) {
-                return message(api_error_msg($response) . "<a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
+                return message(api_error_msg($response) . "<div style=\"padding:6px\" id=\"top-div\"></div><a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
             } else {
-                return message("Success<a href=\"\">" . getconstStr('Back') . "</a><script>var status = \"" . $response['DplStatus'] . "\";</script>", "Success", 200, 1);
+                return message("Success<div style=\"padding:6px\" id=\"top-div\"></div><a href=\"\">" . getconstStr('Back') . "</a><script>var status = \"" . $response['DplStatus'] . "\";</script>", "Success", 200, 1);
             }
         } else {
-            return message("Old pass error<a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
+            return message("Old pass error<div style=\"padding:6px\" id=\"top-div\"></div><a href=\"\">" . getconstStr('Back') . "</a>", "Error", 403);
         }
     } else return message('please login again', 'Need login', 403);
 
-    $html .= '
+    $html .= '<div style=\"padding:6px\" id=\"top-div\"></div>
 <a id="back" href="./">' . getconstStr('Back') . '</a><br>
     <script>
         if (location.search.indexOf("preview")>0) document.getElementById("back").href = "?preview";
