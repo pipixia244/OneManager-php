@@ -485,7 +485,7 @@ function main($path)
             $files['error']['code'] = 'unknownError';
             $files['error']['stat'] = 500;
         }
-        return message('<div style="margin:2px;"><pre>' . $files['error']['message'] . '</pre></div><a href="javascript:history.back(-1)">'.getconstStr('Back').'</a>', $files['error']['code'], $files['error']['stat']);
+        return message('<div style="margin:2px;"><pre>' . $files['error']['message'] . '</pre></div><div style="padding:6px" id="top-div"></div><a href="javascript:history.back(-1)">'.getconstStr('Back').'</a>', $files['error']['code'], $files['error']['stat']);
     }
 }
 
@@ -1033,11 +1033,11 @@ function message($message, $title = 'Message', $statusCode = 200, $wainstat = 0)
          <div style="padding:8px" id="top-div"></div>
         <a class="error-link" href="' . $_SERVER['base_path'] . '">'. getconstStr('Back') . getconstStr('Home') . '</a>
         <div id="dis" style="display: none;">
-        <div style="padding:6px" id="top-div"></div>
       </section>
     </div>
   </div>
 </main>
+<div style="padding:6px" id="top-div"></div>
 
 </div></div></div>
 ';
