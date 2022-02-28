@@ -1040,7 +1040,7 @@ function message($message, $title = 'Message', $statusCode = 200, $wainstat = 0)
 <div style="padding:8px" id="top-div"></div>
 
 <h2 class="title" id="title">
-        <a href="/">Pipixia244\'s Share Station</a>
+        <a href="/">' . $_SERVER['sitename'] . '</a>
 </h2>
 
 <div class="list-wrapper" id="list-div">
@@ -1472,7 +1472,7 @@ function EnvOpt($needUpdate = 0)
     //foreach ($EnvConfigs as $env => $v) if (isCommonEnv($env)) $envs .= '\'' . $env . '\', ';
     $envs = substr(json_encode(array_keys ($EnvConfigs)), 1, -1);
 
-    $html = '<title>OneManager '.getconstStr('Setup').'</title>';
+    $html = '<title>' . $_SERVER['sitename'] . ' '.getconstStr('Setup').'</title>';
     if (isset($_POST['updateProgram'])&&$_POST['updateProgram']==getconstStr('updateProgram')) if (compareadminmd5('admin', getConfig('admin'), $_COOKIE['admin'], $_POST['_admin'])) {
         $response = setConfigResponse(OnekeyUpate($_POST['GitSource'], $_POST['auth'], $_POST['project'], $_POST['branch']));
         if (api_error($response)) {
